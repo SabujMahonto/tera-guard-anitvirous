@@ -1,7 +1,7 @@
 "use strict";
 
 /////////////////////////////////////////////////////////////
-// Elements
+// Elements selected
 /////////////////////////////////////////////////////////////
 
 const modal = document.querySelector(".modal");
@@ -26,3 +26,9 @@ const slider = document.querySelector(".slider");
 const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
 const dotContainer = document.querySelector(".dots");
+
+// Cookie
+cookieCloseBtn.addEventListener("click", function () {
+  cookieBody.classList.add("hidden");
+  cookieBody.style.bottom = "-12rem";
+});
