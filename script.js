@@ -32,3 +32,22 @@ cookieCloseBtn.addEventListener("click", function () {
   cookieBody.classList.add("hidden");
   cookieBody.style.bottom = "-12rem";
 });
+// Stick navbar
+// nav's height
+const navHeight = nav.getBoundingClientRect().height;
+
+function sticky(entries) {
+  const entry = entries[0];
+  if (!entry.isIntersecting) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+}
+const headerObserver = new IntersectionObserver(sticky, {
+  root: null, // viewport
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+
+headerObserver.observe(header);
