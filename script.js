@@ -122,3 +122,21 @@ btnScrollTo.addEventListener("click", function (e) {
   e.preventDefault();
   section1.scrollIntoView({ behavior: "smooth" });
 });
+
+// lazy loading
+function loadImg(entries, observe) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener("load", function () {
+    entry.target.classList.remove("lazy-img");
+  });
+}
+
+const imgObserve = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: "250px",
+});
+
+imgTargets.forEach((img) => imgObserve.observe(img));
