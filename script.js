@@ -6,7 +6,7 @@
 
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
-const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const btnOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const nav = document.querySelector(".nav");
 const navLinks = document.querySelector(".nav__links");
@@ -70,3 +70,21 @@ allSections.forEach((section) => {
   sectionObs.observe(section);
   section.classList.add("section--hidden");
 });
+// open modal
+function openModel(e) {
+  e.preventDefault();
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+}
+
+// close modal
+function closeModel(e) {
+  e.preventDefault();
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+}
+
+//modal windows
+btnOpenModal.forEach((btn) => btn.addEventListener("click", openModel));
+btnCloseModal.addEventListener("click", closeModel);
+overlay.addEventListener("click", closeModel);
