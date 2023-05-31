@@ -116,3 +116,9 @@ navLinks.addEventListener("click", function () {
     navLinks.classList.remove("nav__open");
   document.querySelector("html").style.overflow = "visible";
 });
+
+// learn more scroll
+btnScrollTo.addEventListener("click", function (e) {
+  e.preventDefault();
+  section1.scrollIntoView({ behavior: "smooth" });
+});
