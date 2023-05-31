@@ -82,9 +82,11 @@ function closeModel(e) {
   e.preventDefault();
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
+  if (e.key === "Escape" && !modal.classList.contains("hidden"));
 }
 
 //modal windows
 btnOpenModal.forEach((btn) => btn.addEventListener("click", openModel));
 btnCloseModal.addEventListener("click", closeModel);
 overlay.addEventListener("click", closeModel);
+document.addEventListener("keydown", closeModel);
