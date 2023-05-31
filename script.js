@@ -90,3 +90,13 @@ btnOpenModal.forEach((btn) => btn.addEventListener("click", openModel));
 btnCloseModal.addEventListener("click", closeModel);
 overlay.addEventListener("click", closeModel);
 document.addEventListener("keydown", closeModel);
+
+// Scrollbehavear
+navLinks.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains("nav__link")) {
+    const attr = e.target.getAttribute("href");
+    document.querySelector(attr).scrollIntoView({ behavior: "smooth" });
+    console.log(attr);
+  }
+});
