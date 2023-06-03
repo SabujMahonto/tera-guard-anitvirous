@@ -140,3 +140,38 @@ const imgObserve = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach((img) => imgObserve.observe(img));
+
+// slider
+let currentSlide = 0;
+let maxSlide = slides.length - 1;
+
+//change slide
+function changeSlide(currentSlide) {
+  slides.forEach(
+    (slide, i) =>
+      (slide.style.transform = `translateX(${100 * (i - currentSlide)}%)`)
+  );
+}
+changeSlide(0);
+
+// btn handler
+function previousSlider(e) {
+  e.preventDefault();
+  if (currentSlide === 0) {
+    currentSlide = maxSlide;
+  } else {
+    currentSlide--;
+    changeSlide(currentSlide);
+  }
+}
+function nextSlider(e) {
+  e.preventDefault();
+  if (currentSlide === maxSlide) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+    changeSlide(currentSlide);
+  }
+}
+btnLeft.addEventListener("click", previousSlider);
+btnRight.addEventListener("click", nextSlider);
