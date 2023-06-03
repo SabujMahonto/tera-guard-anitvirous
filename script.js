@@ -175,3 +175,26 @@ function nextSlider(e) {
 }
 btnLeft.addEventListener("click", previousSlider);
 btnRight.addEventListener("click", nextSlider);
+
+// DOts
+function creatingDots() {
+  slides.forEach((_, i) => {
+    const dot = `<button class="dots__dot" data-slide="${i}"></button>`;
+    dotContainer.insertAdjacentHTML("beforeend", dot);
+  });
+}
+
+creatingDots();
+
+// Activate dots
+function activateDots(slide) {
+  document
+    .querySelectorAll(".dots__dot")
+    .forEach((dot) => dot.classList.remove("dots__dot--active"));
+
+  document
+    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add("dots__dot--active");
+}
+
+activateDots(0);
