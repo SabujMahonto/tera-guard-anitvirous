@@ -141,38 +141,9 @@ const imgObserve = new IntersectionObserver(loadImg, {
 
 imgTargets.forEach((img) => imgObserve.observe(img));
 
-// slider
+// Slider
 let currentSlide = 0;
-let maxSlide = slides.length - 1;
-
-//change slide
-function changeSlide(currentSlide) {
-  slides.forEach(
-    (slide, i) =>
-      (slide.style.transform = `translateX(${100 * (i - currentSlide)}%)`)
-  );
-}
-changeSlide(0);
-
-// btn handler
-function previousSlider(e) {
-  e.preventDefault();
-  if (currentSlide === 0) {
-    currentSlide = maxSlide;
-  } else {
-    currentSlide--;
-    changeSlide(currentSlide);
-  }
-}
-function nextSlider(e) {
-  e.preventDefault();
-  if (currentSlide === maxSlide) {
-    currentSlide = 0;
-  } else {
-    currentSlide++;
-    changeSlide(currentSlide);
-  }
-}
+const maxSlide = slides.length - 1;
 
 // DOts
 function creatingDots() {
@@ -196,6 +167,29 @@ function activateDots(slide) {
 }
 
 activateDots(0);
+
+function updateSlide(cs) {
+  slides.forEach(
+    (sl, i) => (sl.style.transform = `translateX(${100 * (i - cs)}%)`)
+  );
+}
+
+updateSlide(0);
+
+function previousSlide() {
+  if (currentSlide === 0) currentSlide = maxSlide;
+  else currentSlide--;
+  updateSlide(currentSlide);
+  activateDots(currentSlide);
+}
+
+function nextSlide() {
+  if (currentSlide === maxSlide) currentSlide = 0;
+  else currentSlide++;
+  updateSlide(currentSlide);
+  activateDots(currentSlide);
+}
+
 // dots handler
 dotContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("dots__dot")) {
@@ -203,6 +197,7 @@ dotContainer.addEventListener("click", function (e) {
     updateSlide(e.target.dataset.slide);
   }
 });
+
 // button handles
 btnLeft.addEventListener("click", previousSlide);
 btnRight.addEventListener("click", nextSlide);
@@ -211,4 +206,21 @@ btnRight.addEventListener("click", nextSlide);
 document.addEventListener("keydown", (e) => {
   e.key === "ArrowLeft" && previousSlide();
   e.key === "ArrowRight" && nextSlide();
+});
+
+// tabbed components
+tabsContainer.addEventListener("click", function (e) {
+  const btn = e.target.closest(".operations__tab");
+
+  if (!btn) return;
+
+  tabs.forEach((tab) => tab.classList.remove("operations__tab--active"));
+  tabsContent.forEach((content) =>
+    content.classList.remove("operations__content--active")
+  );
+
+  btn.classList.add("operations__tab--active");
+  document
+    .querySelector(`.operations__content--${btn.dataset.tab}`)
+    .classList.add("operations__content--active");
 });
