@@ -198,3 +198,10 @@ function activateDots(slide) {
 }
 
 activateDots(0);
+// dots handler
+dotContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("dots__dot")) {
+    activateDots(e.target.dataset.slide);
+    updateSlide(e.target.dataset.slide);
+  }
+});
