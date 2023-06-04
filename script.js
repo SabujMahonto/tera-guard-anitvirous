@@ -173,8 +173,6 @@ function nextSlider(e) {
     changeSlide(currentSlide);
   }
 }
-btnLeft.addEventListener("click", previousSlider);
-btnRight.addEventListener("click", nextSlider);
 
 // DOts
 function creatingDots() {
@@ -204,4 +202,13 @@ dotContainer.addEventListener("click", function (e) {
     activateDots(e.target.dataset.slide);
     updateSlide(e.target.dataset.slide);
   }
+});
+// button handles
+btnLeft.addEventListener("click", previousSlide);
+btnRight.addEventListener("click", nextSlide);
+
+// keyboard
+document.addEventListener("keydown", (e) => {
+  e.key === "ArrowLeft" && previousSlide();
+  e.key === "ArrowRight" && nextSlide();
 });
